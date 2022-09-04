@@ -1,0 +1,326 @@
+﻿@model IEnumerable<MVC.Models.Table_1>
+@Model MVC.Models.Table_1
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko" rel="stylesheet">
+    <style>
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            margin-top: 0;
+            margin-left: 0;
+            font-family: 'Teko', serif;
+        }
+        /* Split the screen in half */
+        .split {
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+        }
+
+        .Top {
+            z-index: 3;
+            width: 100%;
+            height: 10%;
+            position: fixed;
+            background: greenyellow;
+            padding-left: 3em;
+            padding-top: 1em;
+            padding-bottom: 1em;
+        }
+
+            .Top div {
+                float: left;
+                clear: none;
+            }
+
+            .Top h1 {
+                font-size: 40px;
+            }
+
+        .Top_Function {
+            display: inline-block;
+        }
+
+        /* Control the left side */
+        .Nav {
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            left: 0;
+            width: 8%;
+            height: 100%;
+            background-color: #111;
+            margin-top: 3em;
+            color: white;
+        }
+
+        .Nav_Action {
+            display: flex;
+            left: 10%;
+            margin-right: 2em;
+        }
+
+
+
+        .Nav_Action_List {
+            list-style: none;
+            font-size: 20px;
+        }
+
+            .Nav_Action_List a {
+                color: #dbdbdb
+            }
+
+
+        /* Control the right side */
+        .Content {
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            float: left;
+            width: 100%;
+            right: 0;
+            height: 100%;
+            background-color: dimgrey;
+        }
+
+        .Content_table {
+            /*float:left;
+            clear:none;*/
+            position: absolute;
+            left: 20%;
+            top: 15%;
+        }
+
+        .Content_table_create {
+            /*  transform();*/
+        }
+
+
+        .Content_table_container {
+            /*position: relative;*/
+            /*top: 50%;
+            left: -200%;*/
+            /*transform: translate(-50%, -50%);*/
+        }
+
+        table {
+            width: max-content;
+            border-collapse: collapse;
+            overflow: hidden;
+            /*box-shadow: 0 0 20px rgba(0,0,0,0.1);*/
+        }
+
+        th,
+        td {
+            padding: 15px;
+            background-color: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+
+        th {
+            text-align: left;
+        }
+
+        thead th {
+            background-color: #0b049c
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+
+        tbody td {
+            position: relative;
+        }
+
+        /* tbody td:before{
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -9999px;
+            bottom: -9999px;
+            background-color: rgba(255,255,255,0.2);
+            z-index: -1;
+        }*/
+
+
+    </style>
+
+</head>
+<body>
+
+    <div class="Top">
+
+        <div class="Top_Head">
+
+            <h1>Bug Tracker</h1>
+
+        </div>
+
+
+
+        <div class="Top_Function" style="float:left;">
+
+            <div>
+
+                <h3>Welcome Dino</h3>
+
+
+
+                @*<h3> Welcome @Session["userName"].ToString()</h3>*@
+            </div>
+
+            <div style="margin-left:.3em;">
+                <a href="@Url.Action("LogOut","Login")"><h3>Log Out</h3></a>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+    <div class="Nav split">
+
+        <div class="Nav_Action">
+
+
+            <ul class="Nav_Action_List">
+                <li><a href="@Url.Action("Index","Chart")"><h3>Chart</h2></a></li>
+
+            </ul>
+
+
+
+
+        </div>
+
+
+
+
+    </div>
+
+    <div class="Content split">
+
+        <div class="Content_table">
+
+            <div class="Content_table_create">
+
+                <p>
+                    @Html.ActionLink("Create New", "Create")
+                </p>
+
+
+            </div>
+            <div class="Content_data">
+                <label>@ViewBag.Count</label>
+
+
+
+                @using (Html.BeginForm("SearchButtonHandle", "Bug", new { id = ViewBag.Count }))
+                {
+
+                    <input id="Name" name="SearchInput" type="text" value="" />
+                    <input type="submit" value="Search" />
+                }
+
+               
+            </div>
+
+            <label>@ViewBag.AmtHR</label>
+
+            <div class="Content_search">
+
+            </div>
+
+
+            <div class="Content_table_container">
+
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Date)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Bug_Level)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Bug_Level)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+
+
+
+                </table>
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+

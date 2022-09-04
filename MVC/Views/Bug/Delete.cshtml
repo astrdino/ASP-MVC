@@ -1,0 +1,161 @@
+﻿@model MVC.Models.Table_1
+
+@{
+    ViewBag.Title = "Delete";
+
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <style>
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            margin-top: 0;
+            margin-left: 0;
+        }
+        /* Split the screen in half */
+        .split {
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+        }
+
+        .Top {
+            z-index: 3;
+            width: 100%;
+            height: 10%;
+            position: fixed;
+            background: greenyellow;
+        }
+
+        /* Control the left side */
+        .Nav {
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            left: 0;
+            width: 13%;
+            height: 100%;
+            background-color: #111;
+            margin-top: 3em;
+            color: white;
+        }
+
+        .Nav_Head {
+        }
+
+        .Nav_Action_List {
+            list-style: none;
+        }
+
+
+        /* Control the right side */
+        .Content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            float: left;
+            width: 100%;
+            right: 0;
+            height: 100%;
+            background-color: dimgrey;
+        }
+    </style>
+    <title>Index</title>
+</head>
+<body>
+
+    <div class="Top">
+
+        <h1>Dashboard</h1>
+
+    </div>
+
+
+    <div class="Nav split">
+        <div class="Nav_Head">
+            <h3>Welcome Dino</h3>
+            @*<h3> Welcome @Session["userName"].ToString()</h3>*@
+        </div>
+        <div class="Nav_Action">
+
+
+            <ul class="Nav_Action_List">
+                <li><a href="@Url.Action("Index","Bug")"><h3>View Bug Report</h2></a></li>
+                <li><a href="@Url.Action("Regist","Home")"><h3>Register</h3></a></li>
+                <li><a href="@Url.Action("LogOut","Login")"><h3>Log Out</h3></a></li>
+            </ul>
+
+
+
+
+        </div>
+
+
+
+
+    </div>
+
+    <div class="Content split">
+
+        <h2>Delete</h2>
+
+        <h3>Are you sure you want to delete this?</h3>
+        <div>
+            <h4>Table_1</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Date)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Date)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Bug_Level)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Bug_Level)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
+        </div>
+
+
+    </div>
+</body>
+</html>
+
+

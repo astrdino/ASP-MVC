@@ -1,0 +1,178 @@
+﻿@model MVC.Models.Table_1
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <style>
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            margin-top: 0;
+            margin-left: 0;
+        }
+        /* Split the screen in half */
+        .split {
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+        }
+
+        .Top {
+            z-index: 3;
+            width: 100%;
+            height: 10%;
+            position: fixed;
+            background: greenyellow;
+        }
+
+        /* Control the left side */
+        .Nav {
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            left: 0;
+            width: 13%;
+            height: 100%;
+            background-color: #111;
+            margin-top: 3em;
+            color: white;
+        }
+
+        .Nav_Head {
+        }
+
+        .Nav_Action_List {
+            list-style: none;
+        }
+
+
+        /* Control the right side */
+        .Content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            float: left;
+            width: 100%;
+            right: 0;
+            height: 100%;
+            background-color: dimgrey;
+        }
+
+        .Content_table {
+            background: #454545;
+            width: max-content;
+        }
+    </style>
+    <title>Index</title>
+</head>
+<body>
+
+    <div class="Top">
+
+        <h1>Dashboard</h1>
+
+    </div>
+
+
+    <div class="Nav split">
+        <div class="Nav_Head">
+            <h3>Welcome Dino</h3>
+            @*<h3> Welcome @Session["userName"].ToString()</h3>*@
+        </div>
+        <div class="Nav_Action">
+
+
+            <ul class="Nav_Action_List">
+                <li><a href="@Url.Action("Index","Bug")"><h3>View Bug Report</h2></a></li>
+                <li><a href="@Url.Action("Regist","Home")"><h3>Register</h3></a></li>
+                <li><a href="@Url.Action("LogOut","Login")"><h3>Log Out</h3></a></li>
+            </ul>
+
+
+
+
+        </div>
+
+
+
+
+    </div>
+
+    <div class="Content split">
+
+
+
+        @*<h2>Edit</h2>*@
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Table_1</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.Bug_Level, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Bug_Level, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Bug_Level, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+
+
+
+
+    </div>
+</body>
+</html>

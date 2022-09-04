@@ -1,0 +1,180 @@
+﻿
+@{
+    Layout = null;
+    if (Session["userID"] == null )
+    {
+       //Response.Redirect("~/Login/Index");
+    }
+
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko" rel="stylesheet">
+    <style>
+
+        a {
+            text-decoration: none;
+           
+        }
+
+        body {
+            margin-top: 0;
+            margin-left: 0;
+            font-family: 'Teko', serif;
+            
+        }
+        /* Split the screen in half */
+        .split {
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+        }
+
+        .Top {
+            z-index: 3;
+            width: 100%;
+            height: 10%;
+            position: fixed;
+            background: greenyellow;
+            padding-left:3em;
+            padding-top:1em;
+            padding-bottom:1em;
+            
+        }
+
+        .Top div {
+            float: left;
+            clear: none;
+        }
+
+        .Top h1{
+            font-size:40px;
+            
+        }
+
+        .Top_Function {
+
+            display:inline-block;
+        }
+
+        /* Control the left side */
+        .Nav {
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            left: 0;
+            width: 8%;
+            height: 100%;
+            background-color: #111;
+            margin-top: 3em;
+            color: white;
+        }
+
+        .Nav_Action {
+            display: flex;
+            left: 10%;
+            margin-right: 2em;
+            
+        }
+
+      
+
+        .Nav_Action_List {
+            list-style: none;
+            font-size:20px;
+            
+        }
+
+        .Nav_Action_List a{
+            color:#dbdbdb
+        }
+
+
+        /* Control the right side */
+        .Content {
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            float: left;
+            width: 100%;
+            right: 0;
+            height: 100%;
+            background-color: dimgrey;
+        }
+    </style>
+    <title>Index</title>
+</head>
+<body>
+
+    <div class="Top">
+
+        <div class="Top_Head">
+
+            <h1>Dashboard</h1>
+
+        </div>
+
+        
+
+        <div class="Top_Function" style="float:left;">
+
+            <div>
+
+                <h3>Welcome Dino</h3>
+
+
+
+                @*<h3> Welcome @Session["userName"].ToString()</h3>*@
+            </div>
+
+            <div style="margin-left:.3em;">
+                <a href="@Url.Action("LogOut","Login")"><h3>Log Out</h3></a>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+    <div class="Nav split">
+        
+                <div class="Nav_Action">
+
+
+                    <ul class="Nav_Action_List">
+                        <li><a href="@Url.Action("Index","Bug")"><h3>Bug Tracker</h2></a></li>
+                        <li><a href="@Url.Action("Regist","Home")"><h3>Register</h3></a></li>
+                        
+                    </ul>
+
+
+
+
+                </div>
+
+
+
+
+            </div>
+
+    <div class="Content split">
+
+
+
+
+    </div>
+ </body>
+ </html>

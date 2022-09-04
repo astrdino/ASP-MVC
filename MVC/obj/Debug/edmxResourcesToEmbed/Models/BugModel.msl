@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BugDatabaseModelStoreContainer" CdmEntityContainer="BugDatabaseEntities1">
+    <EntitySetMapping Name="Table_1">
+      <EntityTypeMapping TypeName="BugDatabaseModel.Table_1">
+        <MappingFragment StoreEntitySet="Table_1">
+          <ScalarProperty Name="Bug_Level" ColumnName="Bug Level" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

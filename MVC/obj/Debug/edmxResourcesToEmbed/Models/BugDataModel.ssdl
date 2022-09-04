@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BugDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'BugDatabase.dbo.BugData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="BugData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityContainer Name="BugDatabaseModelStoreContainer">
+    <EntitySet Name="BugData" EntityType="Self.BugData" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [BugData].[ID] AS [ID], 
+    [BugData].[Name] AS [Name]
+    FROM [dbo].[BugData] AS [BugData]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
